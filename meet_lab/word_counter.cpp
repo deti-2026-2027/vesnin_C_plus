@@ -1,7 +1,7 @@
 #include "word_counter.h"
 #include <cstring>
 
-word_counter::word_counter(int size): bucket_count(size), buckets(new list *[size]{}), total_word_count(0), unique_word_count(0) {}
+word_counter::word_counter(int size): bucket_count(size), buckets(new list *[size]{}), unique_word_count(0), total_word_count(0) {}
 
 word_counter::~word_counter()
 {
@@ -55,4 +55,17 @@ int word_counter::get_total_word_count() const {
 
 int word_counter::get_unique_word_count() const {
     return unique_word_count;
+}
+
+std::vector<const list *> word_counter::get_entries() const {
+    std::vector<const list *> entries;
+
+    for (int i = 0; i < bucket_count; i++) {
+        const list * current_node = buckets[i];
+        while (current_node != nullptr) {
+            entries.push_back(current_node);
+            current_node = current_node->next;
+        }
+    }
+    return entries;
 }

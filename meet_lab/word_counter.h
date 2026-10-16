@@ -1,5 +1,6 @@
 #ifndef UNTITLED_WORD_COUNTER_H
 #define UNTITLED_WORD_COUNTER_H
+#include <vector>
 
 typedef struct list {
     char *word;
@@ -22,7 +23,8 @@ public:
 
     void add_word(const char *word);
     int get_total_word_count() const;
-    int get_unique_word_count() const;
+
+    std::vector<const list *> get_entries() const;
 };
 
 
